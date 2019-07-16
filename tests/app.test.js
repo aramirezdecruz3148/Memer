@@ -93,4 +93,18 @@ describe('meme route tests', () => {
                 });
             });
     });
+
+    it('deletes a meme by id', async() => {
+        const meme = await Meme.create({ 
+            image: 'an image url', 
+            topText: 'witty text', 
+            bottomText: 'even wittier!' 
+        });
+
+        return request(app)
+            .delete(`/api/v1/memes/${meme._id}`)
+            .then(res => {
+                expect(res.body.image).toEqual('an image url');
+            });
+    });
 });
