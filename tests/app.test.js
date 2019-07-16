@@ -67,4 +67,30 @@ describe('meme route tests', () => {
                 });
             });
     });
+
+    it('can update an entire meme', async() => {
+        const meme = await Meme.create({ 
+            image: 'an image url', 
+            topText: 'witty text', 
+            bottomText: 'even wittier!' 
+        });
+
+        return request(app)
+            .put(`/api/v1/memes/${meme._id}`)
+            .send({
+                image: 'another image url',
+                topText: 'wittier text',
+                bottomText: 'the wittiest text!',
+                __v: 0
+            })
+            .then(res => {
+                expect(res.body).toEqual({
+                    _id: expect.any(String),
+                    image: 'another image url',
+                    topText: 'wittier text',
+                    bottomText: 'the wittiest text!',
+                    __v: 0
+                });
+            });
+    });
 });
