@@ -21,13 +21,13 @@ describe('meme route tests', () => {
     it('can create a new meme', () => {
         return request(app)
             .post('/api/v1/memes')
-            .send({ image: 'an image url', topText: 'witty text', bottomText: 'even wittier!' })
+            .send({ image: 'an image url', top: 'witty text', bottom: 'even wittier!' })
             .then(res => {
                 expect(res.body).toEqual({
                     _id: expect.any(String),
                     image: 'an image url',
-                    topText: 'witty text',
-                    bottomText: 'even wittier!',
+                    top: 'witty text',
+                    bottom: 'even wittier!',
                     __v: 0
                 });
             });
@@ -36,8 +36,8 @@ describe('meme route tests', () => {
     it('can get all memes', async() => {
         const meme = await Meme.create({ 
             image: 'an image url', 
-            topText: 'witty text', 
-            bottomText: 'even wittier!' 
+            top: 'witty text', 
+            bottom: 'even wittier!' 
         });
         
         return request(app)
@@ -51,8 +51,8 @@ describe('meme route tests', () => {
     it('can get a specific meme by id', async() => {
         const meme = await Meme.create({ 
             image: 'an image url', 
-            topText: 'witty text', 
-            bottomText: 'even wittier!' 
+            top: 'witty text', 
+            bottom: 'even wittier!' 
         });
 
         return request(app)
@@ -61,8 +61,8 @@ describe('meme route tests', () => {
                 expect(res.body).toEqual({
                     _id: expect.any(String),
                     image: 'an image url',
-                    topText: 'witty text',
-                    bottomText: 'even wittier!',
+                    top: 'witty text',
+                    bottom: 'even wittier!',
                     __v: 0
                 });
             });
@@ -71,24 +71,24 @@ describe('meme route tests', () => {
     it('can update an entire meme', async() => {
         const meme = await Meme.create({ 
             image: 'an image url', 
-            topText: 'witty text', 
-            bottomText: 'even wittier!' 
+            top: 'witty text', 
+            bottom: 'even wittier!' 
         });
 
         return request(app)
             .put(`/api/v1/memes/${meme._id}`)
             .send({
                 image: 'another image url',
-                topText: 'wittier text',
-                bottomText: 'the wittiest text!',
+                top: 'wittier text',
+                bottom: 'the wittiest text!',
                 __v: 0
             })
             .then(res => {
                 expect(res.body).toEqual({
                     _id: expect.any(String),
                     image: 'another image url',
-                    topText: 'wittier text',
-                    bottomText: 'the wittiest text!',
+                    top: 'wittier text',
+                    bottom: 'the wittiest text!',
                     __v: 0
                 });
             });
@@ -97,8 +97,8 @@ describe('meme route tests', () => {
     it('deletes a meme by id', async() => {
         const meme = await Meme.create({ 
             image: 'an image url', 
-            topText: 'witty text', 
-            bottomText: 'even wittier!' 
+            top: 'witty text', 
+            bottom: 'even wittier!' 
         });
 
         return request(app)
