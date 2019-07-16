@@ -47,4 +47,24 @@ describe('meme route tests', () => {
                 expect(res.body).toEqual([memeJSON]);
             });
     });
+
+    it('can get a specific meme by id', async() => {
+        const meme = await Meme.create({ 
+            image: 'an image url', 
+            topText: 'witty text', 
+            bottomText: 'even wittier!' 
+        });
+
+        return request(app)
+            .get(`/api/v1/memes/${meme._id}`)
+            .then(res => {
+                expect(res.body).toEqual({
+                    _id: expect.any(String),
+                    image: 'an image url',
+                    topText: 'witty text',
+                    bottomText: 'even wittier!',
+                    __v: 0
+                });
+            });
+    });
 });
