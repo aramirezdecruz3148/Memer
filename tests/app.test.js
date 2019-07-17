@@ -81,7 +81,6 @@ describe('meme route tests', () => {
                 image: 'another image url',
                 top: 'wittier text',
                 bottom: 'the wittiest text!',
-                __v: 0
             })
             .then(res => {
                 expect(res.body).toEqual({
