@@ -8,7 +8,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand",
     "test:watch": "npm run test -- --watch",
     "start": "node server.js",
     "start:watch": "nodemon server.js"
@@ -31,6 +31,8 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "mongoose": "^5.6.4"
   }
